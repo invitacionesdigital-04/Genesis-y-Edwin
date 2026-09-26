@@ -219,7 +219,7 @@ function updateMusicIcon() {
 
 // Countdown
 function initializeCountdown() {
-    const targetDate = new Date('2027-03-19T16:00:00').getTime();
+    const targetDate = new Date('2026-11-21T16:30:00').getTime();
     
     function updateCountdown() {
         const now = new Date().getTime();
@@ -387,8 +387,13 @@ document.addEventListener('DOMContentLoaded', () => {
 // ningún enlace real todavía. Cuando se use para una boda real, basta con
 // reemplazar cada URL de ejemplo por el enlace definitivo (Google Maps,
 // álbum de fotos compartido, formulario de RSVP, etc.).
+const MAPA_URL = 'https://maps.app.goo.gl/AdGanfp5yVJFtBDb9';
+const REGALO_URL = 'https://invitacionesdigital-04.github.io/Numero-de-cuenta-genesis/';
+const WHATSAPP_NUMERO = '18097622343';
+
 function openLocation(location) {
-    showToast('Ejemplo', 'Aquí iría el enlace a Google Maps con la dirección real del evento.');
+    // Ceremonia y recepción son en el mismo lugar
+    window.open(MAPA_URL, '_blank', 'noopener');
 }
 
 function sharePhotos() {
@@ -426,10 +431,7 @@ function closeTipsModal() {
 }
 
 function showGifts() {
-    const modal = document.getElementById('giftModal');
-    if (modal) {
-        modal.style.display = 'flex';
-    }
+    window.open(REGALO_URL, '_blank', 'noopener');
 }
 
 function closeGiftModal(event) {
@@ -440,7 +442,8 @@ function closeGiftModal(event) {
 }
 
 function confirmAttendance() {
-    showToast('Ejemplo', 'Aquí iría el enlace al formulario real de confirmación de asistencia.');
+    const mensaje = '¡Hola! Quiero confirmar mi asistencia a la boda de Génesis & Edwin el sábado 21 de noviembre de 2026. 💍';
+    window.open('https://wa.me/' + WHATSAPP_NUMERO + '?text=' + encodeURIComponent(mensaje), '_blank', 'noopener');
 }
 
 // Sistema de Toast
