@@ -537,3 +537,62 @@ function initializeGuestGreeting() {
     clearCaches();
   }
 })();
+
+// Animación sutil al hacer scroll: cada bloque aparece con un leve
+// desvanecido y un pequeño desplazamiento hacia arriba, una sola vez.
+(function() {
+  function initReveal() {
+    if (!('IntersectionObserver' in window)) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const selectors = [
+      '.content .section-title',
+      '.content .section-subtitle',
+      '.countdown-container',
+      '.event-card',
+      '.party-card',
+      '.gift-icon',
+      '.whatsapp-icon',
+      '.rsvp-container .btn-wedding',
+      '.gifts-container .btn-wedding',
+      '.footer-content'
+    ];
+    const items = Array.from(document.querySelectorAll(selectors.join(',')));
+    if (!items.length) return;
+
+    // Pequeño escalonado entre elementos de la misma sección
+    const perSection = new Map();
+    items.forEach(el => {
+      const parent = el.closest('section, footer') || document.body;
+      const i = perSection.get(parent) || 0;
+      perSection.set(parent, i + 1);
+      el.style.setProperty('--reveal-delay', Math.min(i, 4) * 90 + 'ms');
+      el.classList.add('reveal');
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        observer.unobserve(el);
+        el.classList.add('is-visible');
+        // Al terminar, se quitan las clases para no interferir con los
+        // efectos hover y animaciones propias de cada elemento.
+        const cleanup = () => {
+          el.classList.remove('reveal', 'is-visible');
+          el.style.removeProperty('--reveal-delay');
+        };
+        el.addEventListener('transitionend', cleanup, { once: true });
+        setTimeout(cleanup, 1600);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    items.forEach(el => observer.observe(el));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initReveal);
+  } else {
+    initReveal();
+  }
+})();
