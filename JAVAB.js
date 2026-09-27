@@ -110,7 +110,7 @@ function initializeYouTubePlayer() {
     player = new YT.Player('youtube-player', {
         height: '1',
         width: '1',
-        videoId: '2kIbq2igNUo',
+        videoId: '5zR8Y9Dubag',
         playerVars: {
             autoplay: 0,
             controls: 0,
@@ -122,7 +122,7 @@ function initializeYouTubePlayer() {
             rel: 0,
             showinfo: 0,
             iv_load_policy: 3,
-            playlist: '2kIbq2igNUo'
+            playlist: '5zR8Y9Dubag'
         },
         events: {
             'onReady': onPlayerReady,
