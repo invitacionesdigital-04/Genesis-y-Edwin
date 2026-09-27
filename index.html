@@ -74,6 +74,17 @@
         }
         /* Solo queda la Ceremonia: tarjeta centrada y de ancho moderado */
         .events-container { max-width: 640px !important; grid-template-columns: 1fr !important; }
+        /* Legibilidad de la portada: sombra oscura suave detrás del texto (sin recuadros) */
+        .hero-overlay {
+            background: radial-gradient(ellipse 85% 42% at 50% 57%, rgba(18, 11, 4, 0.68) 0%, rgba(18, 11, 4, 0.45) 50%, rgba(18, 11, 4, 0) 100%) !important;
+        }
+        .hero-text .names, .hero-text .ampersand, .hero-text .quote, .hero-text .quote-cite {
+            color: #D2AA55 !important;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55) !important;
+        }
+        .hero-text .quote { font-weight: 700 !important; }
+        /* Texto de la portada un poco más abajo para no tapar la cara */
+        .hero-content { transform: translateY(10vh); }
         a.btn-wedding { display: inline-block; text-decoration: none; }
         /* Texto secundario un poco más grande */
         .section-subtitle, .event-details p, .quote, .welcome-note, .footer-content p { font-size: 16px !important; }
